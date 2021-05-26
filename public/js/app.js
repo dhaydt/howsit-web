@@ -2584,6 +2584,7 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('/contacts').then(function (response) {
       _this.contacts = response.data; // console.log('1', this.contacts)
     });
+    console.log('1', this.users);
   },
   methods: {
     startConversationWith: function startConversationWith(contact) {
@@ -2873,6 +2874,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3039,15 +3042,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['users'],
+  props: {
+    users: {
+      type: Object,
+      required: true
+    }
+  },
   data: function data() {
     return {
-      user: ''
+      'saldos': [],
+      saldo: ''
     };
   },
   mounted: function mounted() {
-    console.log(this.users);
+    var _this = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get('/info/saldo').then(function (response) {
+      _this.saldo = response.data[0]; // console.log('1', this.saldo.saldo)
+    }); // console.log('2', this.users)
   }
 });
 
@@ -47635,7 +47649,19 @@ var render = function() {
             _vm._v(_vm._s(_vm.users.name))
           ]),
           _vm._v(" "),
-          _vm._m(0),
+          _c("div", { staticClass: "profile-cards" }, [
+            _c("div", { staticClass: "profile-card-form__container" }, [
+              _c("h1", { staticClass: "saldo" }, [
+                _vm._v(_vm._s(_vm.saldo ? _vm.saldo.saldo : "0"))
+              ]),
+              _vm._v(" "),
+              _c("h4", { staticClass: "profile-card-inf__title" }, [
+                _vm._v("Wallet Balance")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "profile-card__overlay js-message-close" })
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "profile-card-inf" }, [
             _c(
@@ -47659,7 +47685,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "profile-card-sub" }, [
                   _c("div", { staticClass: "div-data" }, [
-                    _vm._m(1),
+                    _vm._m(0),
                     _vm._v(" "),
                     _c("div", { staticClass: "card-data" }, [
                       _vm._v(
@@ -47675,11 +47701,11 @@ var render = function() {
                 _vm._v("   \n\n          "),
                 _c("div", { staticClass: "profile-card-sub" }, [
                   _c("div", { staticClass: "div-data" }, [
-                    _vm._m(2),
+                    _vm._m(1),
                     _vm._v(" "),
                     _c("div", { staticClass: "card-data" }, [
                       _vm._v(
-                        "\n                " +
+                        "\n                : " +
                           _vm._s(_vm.users.email) +
                           "\n              "
                       )
@@ -47689,15 +47715,15 @@ var render = function() {
                 _vm._v(" "),
                 _c("div"),
                 _vm._v("   \n\n          "),
+                _vm._m(2),
+                _vm._v(" "),
+                _c("div"),
+                _vm._v("   \n\n          "),
                 _vm._m(3),
                 _vm._v(" "),
                 _c("div"),
                 _vm._v("   \n\n          "),
-                _vm._m(4),
-                _vm._v(" "),
-                _c("div"),
-                _vm._v("   \n\n          "),
-                _vm._m(5)
+                _vm._m(4)
               ]
             ),
             _vm._v(" "),
@@ -47892,22 +47918,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "profile-cards" }, [
-      _c("div", { staticClass: "profile-card-form__container" }, [
-        _c("h1", { staticClass: "saldo" }, [_vm._v("$255 USD")]),
-        _vm._v(" "),
-        _c("h4", { staticClass: "profile-card-inf__title" }, [
-          _vm._v("Wallet Balance")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "profile-card__overlay js-message-close" })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

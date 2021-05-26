@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Saldo;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -39,10 +40,25 @@ class HomeController extends Controller
     }
 
     public function info() {
-        $users = User::all();
+        $saldos = Saldo::all();
 
-        return view('info')->with('user');
+        // $contacts = User::where('id', '!=', auth()->id())->get();
+        // dd($users);
+        // $saldo =response()->json([
+        //     'users' => $user,
+        // ], 200);
+        // dd($saldo.'saldo');
 
+        return view('info')->with('users', $saldos);
+
+
+    }
+
+    public function get(){
+        $saldos = Saldo::with('user')->where('user_id', Auth::user()->id)->get();
+
+
+        return response()->json($saldos);
     }
 
     public function setting() {

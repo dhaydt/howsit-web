@@ -60,7 +60,7 @@
             <td>{{ ++$i }}</td>
             <td>{{ $saldo->id }}</td>
             <td>{{ $saldo->name }}</td>
-            <td>{{ $saldo->saldo }}</td>
+            <td><strong>USD </strong> - {{ $saldo->saldo }}</td>
             <td>
                 <a class="btn btn-info btn-sm" href="#" data-toggle="modal" data-target="#show-modal"><i class="fas fa-eye"></i></a>
                 @can('saldo-edit')

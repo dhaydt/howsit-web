@@ -65,6 +65,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/like-image/{image}', [HomeController::class, 'likeImage'])->name('image.like')->middleware('auth');
 
     Route::get('/info', [HomeController::class, 'info'])->name('info');
+    Route::get('/info/saldo', [HomeController::class, 'get']);
 
     Route::get('/setting', [HomeController::class, 'setting'])->name('setting');
     Route::get('/group', [HomeController::class, 'group'])->name('group');

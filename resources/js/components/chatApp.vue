@@ -36,6 +36,7 @@ import ContactsList from './chat/ContactList'
                     // console.log('1', this.contacts)
 
                 });
+                console.log('1',this.users);
         },
 
         methods: {

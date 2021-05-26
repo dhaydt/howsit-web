@@ -8,7 +8,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="/saldos/{{ $saldo->id }}" method="POST" id="editSaldo">
+        <form action="/saldos/{{ $saldo->id }}" method="POST" id="editSaldo" name="bene" onchange="calculate()">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
         <div class="modal-body">
@@ -34,8 +34,8 @@
                 <div class="form-group">
                     <label for="">Old Saldo</label>
                     <h5 class="my-0">
-                        IDR
-                        <input id="edit-saldo" class="wallet-balance-per-date" style="border: none; background-color: transparent;" name="saldo">
+                        USD
+                        <input id="edit-saldo" class="wallet-balance-per-date" style="border: none; background-color: transparent;" name="oldsaldo">
                     </h5>
                 </div>
 
@@ -43,15 +43,15 @@
                     <div class="col-6">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <button class="btn btn-success">+</button>
+                                <button class="btn btn-success" disabled>+</button>
                             </div>
-                            <input type="number" name="plus" class="form-control" placeholder="Addition">
+                            <input type="number" name="plus"  class="form-control" placeholder="Addition">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <button class="btn btn-danger">-</button>
+                                <button class="btn btn-danger" disabled>-</button>
                             </div>
                             <input type="number" name="minus" class="form-control" placeholder="Substraction">
                         </div>
@@ -62,9 +62,9 @@
                     <label for="">New Saldo</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <div class="input-group-text">IDR</div>
+                            <div class="input-group-text">USD</div>
                         </div>
-                        <input type="number" name="saldo" class="form-control saldo">
+                        <input type="number" name="saldo" id="newsaldo" class="form-control saldo" readonly>
                     </div>
                 </div>
 
@@ -85,6 +85,21 @@
   </div>
 
   <script>
+
+    var form = document.forms.bene,
+        old = form.oldsaldo,
+        add = form.plus,
+        min = form.minus,
+        output = form.saldo;
+
+    window.calculate = function () {
+        var q = parseInt(old.value, 10) || 0,
+            c = parseFloat(add.value) || 0;
+            m = parseFloat(min.value) || 0;
+        output.value = (q + c - m);
+    };
+
+
     $(document).ready(function () {
         var table = $('#saldotable').DataTable({
 
@@ -98,7 +113,7 @@
             }
 
             var data = table.row($tr).data();
-            console.log(data);
+            // console.log(data);
 
             $('#edit-name').val(data[2]);
             $('#edit-saldo').val(data[3]);

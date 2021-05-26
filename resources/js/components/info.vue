@@ -15,11 +15,11 @@
     </div>
 
     <div class="profile-card__cnt js-profile-cnt">
-        <div class="profile-card__name">{{ users.name}}</div>
+        <div class="profile-card__name">{{ users.name }}</div>
 
     <div class="profile-cards">
         <div class="profile-card-form__container">
-            <h1 class="saldo">$255 USD</h1>
+            <h1 class="saldo">{{ saldo ? saldo.saldo : '0' }}</h1>
             <h4 class="profile-card-inf__title">Wallet Balance</h4>
         </div>
 
@@ -52,7 +52,7 @@
                 <p>E-mail</p>
               </div>
               <div class="card-data">
-                {{ users.email }}
+                : {{ users.email }}
               </div>
             </div>
           </div>
@@ -165,17 +165,30 @@
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
-        props: ['users'],
+        props: {
+            users: {
+                type: Object,
+                required: true
+            },
+        },
 
         data() {
             return {
-                user: '',
+                'saldos': [],
+                saldo: '',
             }
         },
 
         mounted() {
-            console.log(this.users)
+            axios.get('/info/saldo')
+                .then((response) => {
+                    this.saldo = response.data[0];
+                    // console.log('1', this.saldo.saldo)
+
+                });
+            // console.log('2', this.users)
 
         }
     }

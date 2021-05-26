@@ -51,6 +51,12 @@ class User extends Authenticatable
         return $this->hasMany(Image::class);
     }
 
+    public function saldo()
+    {
+
+        return $this->hasOne(Saldo::class);
+    }
+
     public function likedImages()
     {
         return $this->belongsToMany(Image::class)->withTimestamps();
