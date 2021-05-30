@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/contacts', [ContactController::class, 'get']);
     Route::get('/conversation/{id}', [ContactController::class, 'getMessagesFor']);
     Route::post('/conversation/send', [ContactController::class, 'send']);
+    Route::post('/image/send/{id}', [ContactController::class, 'sendMMS']);
 
     Route::get('/home', [ImageController::class, 'index'])->name('home');
     Route::post('/image', [ImageController::class, 'post']);

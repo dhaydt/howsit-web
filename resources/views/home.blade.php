@@ -11,7 +11,18 @@
         display: none;
     }
 
+    #app > main > div > div > div.col.col-lg-6.colm > div > aside > div > div.likes.col.col-sm-6 > li > span {
+    color: #7d7575;
+    margin-left: 10px;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 700;
+    position: absolute;
+    top: 2px;
+    transition: 0.8s;
+    }
+
 </style>
+
 @section('content')
 
     <div class="container">
@@ -108,13 +119,13 @@
                             <div class="likes col col-sm-6">
                                 <li  value="" class="like">
                             @guest
-                                <i class="bi bi-heart" style=""></i>{{$image->likedUsers->count()}} people like this
+                                <i class="bi bi-heart" style=""></i>{{$image->likedUsers->count()}} <span>like this</span>
                             @else
-                                <a class="like-a" href="#" onclick="document.getElementById('like-form-{{ $image->id }}').submit();">
+                                <button id="like" class="like-a" onclick="document.getElementById('like-form-{{ $image->id }}').submit();">
                                     <i class="bi bi-heart" style="">
                                     </i>
-                                </a>
-                                {{$image->likedUsers->count()}} people like this
+                                </button>
+                                <span style="line-height: 2;"> {{$image->likedUsers->count()}} liked</span>
                                 <form action="{{ route('image.like', $image->id) }}" method="POST" style="display: none;" id="like-form-{{ $image->id }}">
                                     @csrf
                                 </form>
@@ -176,6 +187,11 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <script type="text/javascript">
+
+$('#like').click(function(e){
+    e.preventDefault();
+    // Code goes here
+});
 
 $(document).on('change', ".uploaddiv input[type='file']",function(){
         if ($(this).val()) {

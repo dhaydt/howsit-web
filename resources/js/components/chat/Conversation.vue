@@ -7,7 +7,7 @@
             <h1>{{ contact ? contact.name : 'Howsit Messenger' }}</h1>
         </div>
         <MessagesFeed :contact="contact" :messages="messages"></MessagesFeed>
-        <MessagesComposer @send="sendMessage"></MessagesComposer>
+        <MessagesComposer v-if="input" :contact="selectedContact" @send="sendMessage" @store="handler"></MessagesComposer>
     </div>
 </template>
 
@@ -24,10 +24,24 @@
                 type: Array,
                 default: [],
             },
+            input: {
+                type: Boolean,
+                default: false
+            }
+        },
+        data(){
+            return{
+                selectedContact: null,
+                files:[],
+                inputStatus: false,
+
+            }
         },
 
 
         mounted() {
+
+
         },
 
         methods: {
@@ -36,13 +50,42 @@
                     return;
                 }
 
+                    console.log('res', text);
                 axios.post('./conversation/send', {
                     contact_id: this.contact.id,
                     text: text
                 }). then((response) => {
                     this.$emit('new', response.data);
                 })
+            },
+
+            handler(val){
+                axios.post('./conversation/send', {
+                    contact_id: this.contact.id,
+                    image: val
+                }). then ((response) => {
+                    // console.log('up', response)
+                    this.$emit('new', response.data);
+                })
             }
+        },
+
+        watch: {
+            contact: {
+                    handler (val) {
+                        this.selectedContact = val.id;
+                        // console.log('conversation', this.selectedContact);
+                    },
+                    deep: true,
+
+            },
+            input: {
+                handler(val) {
+                    console.log(val)
+                    this.inputStatus = val;
+                }
+            }
+
         },
 
         components: {

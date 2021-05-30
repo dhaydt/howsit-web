@@ -32,6 +32,17 @@
                 </div>
                 <header>{{ __('Register') }}</header>
 
+                <div class="container mt-2" style="position: absolute; top: 20%; left: 1%;">
+                    @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger" style="background-color: transparent; border: none; color:red;">{{ $error }}</div>
+                    @endforeach
+                    @endif
+                    @if (Session::has('success'))
+                        <div class="alert alert-success">{{ Session::get('success') }}</div>
+                    @endif
+                </div>
+
                 <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
 

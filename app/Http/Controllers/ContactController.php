@@ -53,14 +53,44 @@ class ContactController extends Controller
 
     public function send(Request $request)
     {
-        $message = Message::create([
-            'from' => auth()->id(),
-            'to' => $request->contact_id,
-            'text' => $request->text
-        ]);
+        if(request()->has('file')){
+            $fileName = request('file')->store('chat');
+            $message = Message::create([
+                'from' => auth()->id(),
+                'to' => $request->contact_id,
+                // 'text' => $request->text,
+                'image' => $fileName
+            ]);
+        } else {
+            $message = Message::create([
+                'from' => auth()->id(),
+                'to' => $request->contact_id,
+                'text' => $request->text,
+                'image' => $request->image
+            ]);
+        }
 
         broadcast(new NewMessage($message));
 
         return response()->json($message);
+    }
+
+    public function sendMMS($id)
+    {
+        $to = ($id);
+        $filename = request('file')->store('chat');
+            $message=Message::create([
+                'from' => request()->user()->id,
+                'image' => $filename,
+                'to' => $to,
+            ]);
+
+            broadcast(new NewMessage($message));
+
+            return response()->json($message);
+    }
+
+    public function sender(){
+
     }
 }

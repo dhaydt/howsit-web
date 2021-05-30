@@ -26,8 +26,13 @@
     },
     "dependencies": {
         "bootstrap-icons": "^1.4.1",
+        "emoji-mart-vue": "^2.6.4",
+        "imagemin-pngquant": "^9.0.2",
         "laravel-echo": "^1.10.0",
+        "moment": "^2.29.1",
         "pusher-js": "^7.0.3",
-        "vue-resource": "^1.5.2"
+        "vue-resource": "^1.5.2",
+        "vue-upload-component": "^2.8.15",
+        "vuetify": "1.1.9"
     }
 }

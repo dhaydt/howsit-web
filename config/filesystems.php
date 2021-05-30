@@ -32,13 +32,13 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => public_path('/'),
         ],
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'root' => public_path('app/public'),
+            'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
 
@@ -51,6 +51,14 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
+
+        'public_uploads' => [
+            'driver' => 'local',
+            // 'root'   => '/storage',
+            'root'   => public_path() . '/public',
+            'visibility' => 'public',
+        ],
+
 
     ],
 
@@ -68,5 +76,59 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
     ],
+
+
+
+    // 000webhost
+    // 'disks' => [
+
+    //     'local' => [
+    //         'driver' => 'local',
+    //         'root' => public_path('../public_html'),
+    //     ],
+
+    //     'public' => [
+    //         'driver' => 'local',
+    //         'root' => storage_path('/ssd3/638/14213638'),
+    //         'url' => env('APP_URL').'/storage',
+    //         'visibility' => 'public_html',
+    //     ],
+
+    //     's3' => [
+    //         'driver' => 's3',
+    //         'key' => env('AWS_ACCESS_KEY_ID'),
+    //         'secret' => env('AWS_SECRET_ACCESS_KEY'),
+    //         'region' => env('AWS_DEFAULT_REGION'),
+    //         'bucket' => env('AWS_BUCKET'),
+    //         'url' => env('AWS_URL'),
+    //         'endpoint' => env('AWS_ENDPOINT'),
+    //     ],
+
+    //     'public_uploads' => [
+    //         'driver' => 'local',
+    //         // 'root'   => '/storage',
+    //         'root'   => storage_path() . '/ssd3/638/14213638',
+    //         'visibility' => 'public_html',
+    //     ],
+
+
+    // ],
+
+    // /*
+    // |--------------------------------------------------------------------------
+    // | Symbolic Links
+    // |--------------------------------------------------------------------------
+    // |
+    // | Here you may configure the symbolic links that will be created when the
+    // | `storage:link` Artisan command is executed. The array keys should be
+    // | the locations of the links and the values should be their targets.
+    // |
+    // */
+
+    // 'links' => [
+    //     public_path('public_html') => storage_path('public_uploads'),
+    //     public_path('storage') => storage_path('/ssd3/638/14213638'),
+    // ],
+
 
 ];

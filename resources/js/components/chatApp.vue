@@ -1,7 +1,7 @@
 <template>
     <div class="chat-app">
             <ContactsList :contacts="contacts" @selected="startConversationWith"/>
-            <Conversation :contact="selectedContact" :messages="messages" @new="saveNewMessage"/>
+            <Conversation  :input="inputStatus" :contact="selectedContact" :messages="messages" @new="saveNewMessage"/>
     </div>
 </template>
 
@@ -21,6 +21,9 @@ import ContactsList from './chat/ContactList'
                 selectedContact: null,
                 messages: [],
                 contacts: [],
+                files: [],
+                inputStatus: false,
+                // inputStatus: true,
             };
         },
 
@@ -36,22 +39,35 @@ import ContactsList from './chat/ContactList'
                     // console.log('1', this.contacts)
 
                 });
-                console.log('1',this.users);
+                // console.log('1',this.users);
         },
 
         methods: {
             startConversationWith(contact) {
                 this.updateUnreadCount(contact, true);
+                this.toggleInput();
 
                 axios.get(`/conversation/${contact.id}`)
                     .then((response) => {
                         this.messages = response.data;
-                        console.log('ps', this.messages);
+                        // console.log('ps', this.messages);
                         this.selectedContact = contact;
+                        // console.log('chat-method', this.messages);
                 })
+
+            },
+
+            toggleInput(){
+                if (this.selectedContact == null) {
+                    this.inputStatus= false;
+                }
+                this.inputStatus = true;
             },
 
             saveNewMessage(message) {
+                if (this.selectedContact == null) {
+                    return alert('Please select contact');
+                }
                 this.messages.push(message);
             },
 
@@ -92,6 +108,11 @@ import ContactsList from './chat/ContactList'
 <style lang="scss" scoped>
 .chat-app {
     background-color: #ebecf0;
+    min-height: 100vh;
+}
+
+.conversation {
+    transition: all 3s ease;
 }
 
 </style>
