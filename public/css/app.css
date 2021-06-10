@@ -10917,6 +10917,7 @@ a:hover {
 
 .py-4 {
   background-color: #ebecf0;
+  padding: 0 0 !important;
 }
 
 .invalid-feedback {
@@ -10964,11 +10965,12 @@ a:hover {
 }
 
 .bg-yellow {
-  background-color: #fff000;
+  background-color: #FFEA00;
 }
 
 .navbar {
   z-index: 1;
+  padding: 0 !important;
 }
 
 .nav-logo {
@@ -11000,7 +11002,8 @@ a:hover {
   display: inline;
   list-style: none;
   cursor: pointer;
-  padding: 0 40px;
+  padding: 0 30px;
+  margin: 0 5px;
   transition: 0.3s;
 }
 
@@ -11011,8 +11014,8 @@ a:hover {
 }
 
 .nav-li:hover {
-  background-color: #aea404;
-  border-radius: 20px;
+  background-color: #aea30446;
+  border-radius: 10px;
 }
 
 .nav-a {
@@ -11023,12 +11026,12 @@ a:hover {
 }
 
 .nav-i {
-  font-size: 26px;
+  font-size: 24px;
 }
 
 @media (max-width: 500px) {
   .nav-i {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
@@ -11040,9 +11043,11 @@ a:hover {
 .user-div {
   display: flex;
   width: 150px;
+  align-items: center;
   line-height: 2.2;
   transition: 0.3s;
-  margin-right: 10px;
+  justify-content: center;
+  margin: 5px 10px;
 }
 
 .usr-img {
@@ -11052,14 +11057,11 @@ a:hover {
   margin-top: 5px;
 }
 
-.user-div:hover {
-  background-color: #aea404;
-  border-radius: 20px;
-}
-
 .user-div:hover .user-a {
   color: #fff000;
   text-shadow: 2px 2px 5px #0b0c0c;
+  background-color: #aea30446;
+  border-radius: 10px;
 }
 
 .user-div:hover .usr-img {
@@ -11084,12 +11086,16 @@ a:hover {
 
 .user-a {
   color: #3d3f41;
-  display: block;
+  display: flex;
   text-decoration: none;
   background-color: transparent;
   font-size: 14px;
   font-weight: 900;
+  padding: 0 10px;
   text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 a:hover {
@@ -11099,8 +11105,8 @@ a:hover {
 .drop {
   background-color: #aea404;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   text-align: center;
   font-size: 28px;
   line-height: 1;
@@ -11199,8 +11205,8 @@ a:hover {
 
 .cardups {
   width: 100%;
-  margin: 4em 0;
-  border-radius: 20px;
+  margin: 20px 0;
+  border-radius: 10px;
 }
 
 @media (max-width: 500px) {
@@ -11214,7 +11220,7 @@ a:hover {
   margin-left: -10px !important;
   width: 96%;
   min-width: 100px;
-  border-radius: 40px;
+  border-radius: 10px;
   background-color: #f0f2f5;
   border: none;
   font-size: 20px;
@@ -11272,8 +11278,8 @@ input[type=file] {
   background-color: #f0f2f5;
   padding: 0px 10px 0px 10px;
   position: relative;
-  margin: 0 0 20px 10px;
-  border-radius: 20px;
+  margin: 0 10px 20px 20px;
+  border-radius: 10px;
   overflow: hidden;
   white-space: nowrap;
   min-width: 100px;
@@ -11285,13 +11291,17 @@ input[type=file] {
   }
 }
 
+.upload-view {
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+}
+
 .logo-up {
-  position: absolute;
   cursor: pointer;
   width: 30px;
-  top: 25%;
   pointer-events: none;
-  left: 25%;
 }
 
 @media (max-width: 400px) {
@@ -11303,15 +11313,13 @@ input[type=file] {
 }
 
 .fileName {
-  position: absolute;
-  left: 40%;
-  top: 34%;
   text-transform: uppercase;
   color: #65676b;
   font-size: 13px;
   font-weight: 900;
   cursor: pointer;
   text-overflow: ellipsis;
+  margin: 0 !important;
 }
 
 @media (max-width: 400px) {
@@ -11338,10 +11346,8 @@ input[type=file] {
 .sendbtn {
   background-color: #f0f2f5;
   padding: 0px 10px 0px 10px;
-  position: relative;
   margin: 0 25px 20px 0;
-  border-radius: 20px;
-  height: 45px;
+  border-radius: 10px;
   min-width: 100px;
 }
 
@@ -11353,7 +11359,6 @@ input[type=file] {
 }
 
 .btnsend {
-  position: absolute;
   text-transform: uppercase;
   font-weight: 800;
   width: 100%;
@@ -11361,14 +11366,14 @@ input[type=file] {
   left: 0;
   color: #65676b;
   border: none !important;
-  border-radius: 20px;
+  padding: 4px;
 }
 
 .rows {
   position: absolute;
-  width: 100%;
+  width: 110vw;
   height: fit-content;
-  top: 70px;
+  top: 50px;
 }
 
 .coll {
@@ -11571,11 +11576,6 @@ a:hover .bi-heart {
   color: red;
 }
 
-a:hover span {
-  font-size: 18px;
-  top: 2px;
-}
-
 .bi-trash-fill {
   color: #9b9797;
 }
@@ -11702,7 +11702,7 @@ a:hover .bi-trash-fill {
 }
 
 .bg-yellow {
-  background-color: #fff000;
+  background-color: #FFEA00;
 }
 
 .navbar-icon-top .navbar-nav .nav-link > .fa {

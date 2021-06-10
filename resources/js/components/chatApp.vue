@@ -1,7 +1,24 @@
 <template>
     <div class="chat-app">
+        <v-card
+            class="d-flex flex-row mb-6"
+            flat
+        >
+            <v-card
+                class="col-4"
+                outlined
+                tile
+            >
             <ContactsList :contacts="contacts" @selected="startConversationWith"/>
+
+            </v-card>
+            <v-card
+                class="pa-2"
+                outlined
+                tile>
             <Conversation  :input="inputStatus" :contact="selectedContact" :messages="messages" @new="saveNewMessage"/>
+                </v-card>
+        </v-card>
     </div>
 </template>
 
@@ -28,9 +45,9 @@ import ContactsList from './chat/ContactList'
         },
 
         mounted() {
-            // console.log('chatapp',this.users);
             Echo.private(`messages.${this.users.id}`)
                 .listen('NewMessage', (e) => {
+            console.log('chatapp', this.messages);
                     this.handleIncoming(e.message)
                 });
             axios.get('/contacts')
@@ -74,6 +91,7 @@ import ContactsList from './chat/ContactList'
             handleIncoming(message) {
                 if (this.selectedContact && message.from == this.selectedContact.id) {
                     this.saveNewMessage(message);
+                    console.log('handle', this.messages);
                     return;
 
                 }
@@ -107,7 +125,6 @@ import ContactsList from './chat/ContactList'
 
 <style lang="scss" scoped>
 .chat-app {
-    background-color: #ebecf0;
     min-height: 100vh;
 }
 

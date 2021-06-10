@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\Api\FeedController;
+use App\Http\Controllers\Api\ForgotPasswordAPIController;
+use App\Http\Controllers\Api\ResetPasswordAPIController;
+use App\Http\Controllers\Api\SaldoController;
+use App\Http\Controllers\APIcontroller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\APIcontroller;
-use App\Http\Controllers\Api\FeedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,16 +24,22 @@ use App\Http\Controllers\Api\FeedController;
 // header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Authorization");
 // header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login', [APIController::class, 'login']);
+Route::post('login', [APIController::class, 'login'])->name('login');
 Route::post('register', [APIController::class, 'register']);
 
-Route::group(['middleware' => ['auth:api']], function() {
+// Route::post('forgot', [ForgotController::class, 'forgot']);
+
+Route::post('/password/reset', [ResetPasswordAPIController::class, 'reset']);
+Route::post('/password/email', [ForgotPasswordAPIController::class, 'sendResetLinkEmail']);
+
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('/password/reset{token}', [ResetPasswordAPIController::class, 'showResetForm'])->name('password.reset');
     Route::get('user/detail', [APIController::class, 'details']);
     Route::post('logout', [APIController::class, 'logout']);
     Route::get('/home', [FeedController::class, 'index']);
+    Route::get('/saldo', [SaldoController::class, 'index']);
 });

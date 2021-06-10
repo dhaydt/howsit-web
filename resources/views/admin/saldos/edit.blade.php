@@ -113,7 +113,7 @@
             }
 
             var data = table.row($tr).data();
-            // console.log(data);
+            console.log(data);
 
             $('#edit-name').val(data[2]);
             $('#edit-saldo').val(data[3]);

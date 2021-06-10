@@ -66,7 +66,7 @@
 .feed {
     background-color: #ebecf0;
     height: 50vh;
-    max-height: 470px;
+    min-height: 470px;
     width: 100%;
     overflow: scroll;
     ul {

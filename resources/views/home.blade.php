@@ -28,7 +28,7 @@
     <div class="container">
         <div class="row rows d-flex flex-row">
 
-            <div class="col col-lg-3 coll flex-fill d-none d-lg-block">
+            <div class="col col-lg-3 coll flex-fill d-lg-block">
                 {{-- <a href="/home" class="btn btn-warning">Upload</a> --}}
             </div>
 
@@ -51,11 +51,11 @@
                         <div class="row">
                             <div class="col col-sm-6">
                                 <div class="uploaddiv">
-
-                                    {{-- <img class="logo-up" src="{{ asset($image->porfile_image) }}" alt=""> --}}
-                                    <img class="logo-up" src="{{ asset('css/img.png') }}" alt="">
-                                    <input type="file" name="image[]" id="img" multiple accept="image/">
-                                    <p class="fileName">Upload images</p>
+                                    <input type="file" name="image[]" id="img" multiple accept="image/" style="position: absolute;">
+                                    <div class="upload-view">
+                                        <img class="logo-up" src="{{ asset('css/img.png') }}" alt="">
+                                        <p class="fileName">Upload images</p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -176,7 +176,7 @@
                 <h1 class="text-danger">There is no upload</h1>
             @endforelse
         </div>
-                <div class="col col-lg-3 flex-fill colr d-none d-lg-block">
+                <div class="col col-lg-3 flex-fill colr d-lg-block">
 
                 </div>
     </div>

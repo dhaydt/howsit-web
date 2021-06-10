@@ -8,17 +8,19 @@
 
                 <div class="action-btns">
                     <button type="button" class="btn btn-info" @click="handleAudioToggle">
-                    {{ mutedAudio ? "Unmute" : "Mute" }}
+                        <i v-bind:class="{'bi bi-volume-up-fill': !mutedAudio, 'bi bi-volume-mute-fill': mutedAudio }"></i>
+                    <!-- {{ mutedAudio ? "Unmute" : "Mute" }} -->
                     </button>
                     <button
                     type="button"
                     class="btn btn-primary"
                     @click="handleVideoToggle"
                     >
-                    {{ mutedVideo ? "ShowVideo" : "HideVideo" }}
+                    <i v-bind:class="{'bi bi-camera-video-fill': !mutedVideo, 'bi bi-camera-video-off-fill': mutedVideo}"></i>
+                    <!-- {{ mutedVideo ? "ShowVideo" : "HideVideo" }} -->
                     </button>
                     <button type="button" class="btn btn-danger" @click="endCall">
-                    EndCall
+                    <i class="bi bi-telephone-x-fill"></i>
                     </button>
                 </div>
             </section>
@@ -32,7 +34,7 @@
                                 <span class="badge badge-light">
                                     {{getUserOnlineStatus(user.id)}}
                                 </span>
-                                <img :src="'images/profile/'+user.profile_image" alt=""/>
+                                <img :src="'images/profile/'+user.profile_image" alt="user.name"/>
                             </div>
                                 <div class="contact-name">
                                         <h6 class="text-primary">{{ user.name }}</h6>
@@ -209,8 +211,11 @@ export default {
     },
     getUserOnlineStatus(id) {
       const onlineUserIndex = this.onlineUsers.findIndex(
-        (data) => data.id === id
+        (data) => data.id === id,
+
       );
+
+      console.log('online', id);
       if (onlineUserIndex < 0) {
         return "Off";
       }
@@ -366,6 +371,7 @@ export default {
       }
     },
   },
+
 };
 </script>
 
@@ -460,19 +466,19 @@ img {
     display: block;
     text-align: center;
     background-color: #ddd;
-    border-radius: 18px;
+    border-radius: 10px;
     a {
         display: block;
         cursor: pointer;
         color: grey;
         transition: 0.3s;
+        border-radius: 10px;
     }
     a:hover {
         color: red;
     }
     :hover {
         background-color: rgb(172, 169, 169);
-        border-radius: 20px;
     }
 }
 
@@ -560,9 +566,17 @@ img {
 }
 .btn {
     font-size: 0.7em;
-    padding: 5px;
-    margin: 5px
+    padding: 5px 15px;
+    margin: 15px;
+    border-radius: 50%;
 }
+
+.btn .bi {
+    font-size: 40px;
+    color: black;
+}
+
+.btn
 #login-form {
   margin-top: 100px;
 }

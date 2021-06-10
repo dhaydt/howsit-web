@@ -1,19 +1,21 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
-use App\Http\Controllers\CommentController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ImageController;
-use App\Http\Controllers\InfoController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfileController;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\FeedController;
 use App\Http\Controllers\admin\SaldoController;
+use App\Http\Controllers\AgoraVideoController;
+use App\Http\Controllers\Api\ResetPasswordAPIController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FeedController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PusherNotificationController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +36,22 @@ Route::get('qrcode', function () {
     return QrCode::size(300)->generate('https://soapless-worries.000webhostapp.com/register');
 });
 
+Route::get('/notification', function () {
+    return view('notification');
+});
+
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');
+
+Route::post('/password/reset', [ResetPasswordAPIController::class, 'reset']);
+
+Route::get('send', [PusherNotificationController::class, 'notification']);
+
+// Auth::routes(['verify' => true]);
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RoleController::class);
@@ -50,9 +64,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/feed', [App\Http\Controllers\HomeController::class, 'feed'])->name('feed');
 
-    Route::get('/agora-chat', 'App\Http\Controllers\AgoraVideoController@index');
-    Route::post('/agora/token', 'App\Http\Controllers\AgoraVideoController@token');
-    Route::post('/agora/call-user', 'App\Http\Controllers\AgoraVideoController@callUser');
+    Route::get('/agora-chat', [AgoraVideoController::class, 'index']);
+    Route::post('/agora/token', [AgoraVideoController::class, 'token']);
+    Route::post('/agora/call-user', [AgoraVideoController::class, 'callUser']);
 
     Route::get('/messenger', [App\Http\Controllers\HomeController::class, 'messenger'])->name('messenger');
     Route::get('/contacts', [ContactController::class, 'get']);
@@ -78,5 +92,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/profile/update', [ProfileController::class, 'update']);
 
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
-
 });

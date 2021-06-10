@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="pass">
-                        <a href="#">Forgot Password?</a>
+                        <a href="/forgot-password">Forgot Password?</a>
                     </div>
                     <div class="field">
                         <input type="submit" value="{{ __('Login') }}">

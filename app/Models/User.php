@@ -12,6 +12,7 @@ use App\Models\Image;
 // use App\Models\User;
 
 class User extends Authenticatable
+// implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 

@@ -112,7 +112,7 @@
     h1 {
         // border-radius: 8px 30px 3px 2px;
         font-size: 15px;
-        padding: 20px;
+        padding: 8px 20px;
         margin: 0;
         background: transparent;
         color: rgb(61, 65, 65);

@@ -4,6 +4,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 import VueResource from 'vue-resource';
+import Vuetify from 'vuetify'
+import Vue from 'vue'
+import 'vuetify/dist/vuetify.min.css'
 
 
 require('./bootstrap');
@@ -14,6 +17,7 @@ Vue.use(VueResource)
 const VueUploadComponent = require('vue-upload-component')
 Vue.component('file-upload', VueUploadComponent)
 
+Vue.use(Vuetify)
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -32,6 +36,7 @@ Vue.component("setting-page", require("./components/setting.vue").default);
 Vue.component("group-page", require("./components/group.vue").default);
 Vue.component("furnite-page", require("./components/furnite.vue").default);
 Vue.component("help-page", require("./components/help.vue").default);
+Vue.component("notify-item", require("./components/notify.vue").default);
 
 
 /**
