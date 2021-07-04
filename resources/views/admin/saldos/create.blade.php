@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Update Saldo</h5>
+          <h5 class="modal-title" id="exampleModalCenterTitle">Balance Add</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -27,10 +27,10 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="saldo">Add Saldo</label>
+                    <label for="saldo">Add Balance</label>
                     <h5 class="my-0">
-                        IDR
-                        <input id="saldo" type="number" class="wallet-balance-per-date" name="saldo">
+                        (USD)
+                        <input id="saldo" type="number" class="wallet-balance-per-date" name="saldo" required>
                     </h5>
                 </div>
 

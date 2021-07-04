@@ -15,7 +15,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin">Admin</a></li>
-              <li class="breadcrumb-item active">Saldos</li>
+              <li class="breadcrumb-item active">Balance</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -26,7 +26,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h3>Saldo Management</h3>
+            <h3>Balance Management</h3>
         </div>
         <div class="pull-right">
         @can('saldo-create')
@@ -50,7 +50,7 @@
             <th>No</th>
             <th>ID</th>
             <th>Name</th>
-            <th>Saldo</th>
+            <th>Balance</th>
             <th width="280px">Action</th>
         </tr>
     </thead>
@@ -62,7 +62,8 @@
             <td>{{ $saldo->name }}</td>
             <td>{{ $saldo->saldo }}</td>
             <td>
-                <a class="btn btn-info btn-sm" href="#" data-toggle="modal" data-target="#show-modal"><i class="fas fa-eye"></i></a>
+                <a class="btn btn-info btn-sm" href="{{ route('saldos.show',$saldo->id) }}"><i class="fas fa-eye"></i></a>
+                {{-- <a class="btn btn-info btn-sm" href="#" data-toggle="modal" data-target="#show-modal"><i class="fas fa-eye"></i></a> --}}
                 @can('saldo-edit')
                     <a class="btn btn-primary edit btn-sm" data-toggle="modal" href="{{ route('saldos.edit',$saldo->id) }}" data-target="#edit-modal"><i class="fas fa-edit"></i></a>
                 @endcan
@@ -79,12 +80,15 @@
 
     @include('admin.saldos.create')
     @include('admin.saldos.edit')
-    @include('admin.saldos.show')
+    {{-- @include('admin.saldos.show') --}}
 
 {!! $saldos->render() !!}
 
 
 @endsection
+<script>
+
+</script>
 <style>
     #saldotable_wrapper > div:nth-child(3) {
         display: none;

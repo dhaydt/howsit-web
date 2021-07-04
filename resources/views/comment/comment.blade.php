@@ -3,12 +3,11 @@
     <div class="display-comment" @if($comment->parent_id != null) style="margin-left:40px;" @endif>
 
 
-        <div class="comment-content row">
+        <div class="comment-content d-flex mt-2">
             <div class="img-user-div">
-                <img class="usr-img" style="margin-left: 10px;" src="{{ url('/images/profile/'.$comment->user->profile_image) }}" alt="Broken">
-
+                <img class="usr-img me-2" style="margin-left: 10px;" src="{{ url('/images/profile/'.$comment->user->profile_image) }}" alt="Broken">
             </div>
-            <div class="comment-body">
+            <div class="comment-body ms-2">
 
                 <strong style="line-height: 2; margin-left: 20px;">{{ $comment->user->name }}</strong>
                 <p>{{ $comment->body }}</p>

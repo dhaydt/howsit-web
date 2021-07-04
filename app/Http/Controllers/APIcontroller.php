@@ -16,9 +16,9 @@ class APIcontroller extends Controller
 
     public $successStatus = 200;
 
-    public function login(Request $reqest, User $user)
+    public function login(Request $request)
     {
-        if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
+        if (Auth::attempt($this->credentials($request))) {
             $user = Auth::user();
             $success['token'] = $user->createToken('nApp')->accessToken;
 
@@ -28,11 +28,21 @@ class APIcontroller extends Controller
         }
     }
 
+    public function credentials(Request $request)
+    {
+        if (\is_numeric($request->get('email'))) {
+            return ['phone' => $request->get('email'), 'password' => $request->get('password')];
+        }
+
+        return ['email' => request('email'), 'password' => request('password')];
+    }
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required_without:phone|nullable|email',
+            'phone' => 'required_without:email|nullable|string',
             'password' => 'required',
             'c_password' => 'required|same:password',
         ]);

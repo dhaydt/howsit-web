@@ -36,7 +36,7 @@
                     @csrf
                     <div class="field">
                         <span class="fa fa-user"></span>
-                        <input id="email" type="email" style="background-color: azure;" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <input id="email" type="text" style="background-color: azure;" class="@error('email') is-invalid @enderror" name="email" placeholder="Email / Phone Number" required autofocus>
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -47,7 +47,7 @@
 
                     <div class="field space">
                         <span class="fa fa-lock"></span>
-                        <input id="password" type="password" style="background-color: azure;" class="pass-key @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        <input id="password" type="password" style="background-color: azure;" class="pass-key @error('password') is-invalid @enderror" placeholder="Password" name="password" required autocomplete="current-password">
                         <!-- <span class="show">SHOW</span> -->
 
                         @error('password')

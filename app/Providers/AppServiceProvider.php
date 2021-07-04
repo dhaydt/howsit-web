@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Image;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
     {
         config(['app.locale' => 'id']);
         Carbon::setLocale('id');
+        // Image::observe(PostObserver::class);
     }
 }

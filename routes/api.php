@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\FeedController;
+use App\Http\Controllers\Api\APIFeedController;
 use App\Http\Controllers\Api\ForgotPasswordAPIController;
 use App\Http\Controllers\Api\ResetPasswordAPIController;
 use App\Http\Controllers\Api\SaldoController;
@@ -40,6 +40,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/password/reset{token}', [ResetPasswordAPIController::class, 'showResetForm'])->name('password.reset');
     Route::get('user/detail', [APIController::class, 'details']);
     Route::post('logout', [APIController::class, 'logout']);
-    Route::get('/home', [FeedController::class, 'index']);
+
+    Route::get('/home', [APIFeedController::class, 'index']);
+    Route::post('/home/store', [APIFeedController::class, 'store']);
+    Route::delete('/home/{id}', [APIFeedController::class, 'destroy']);
+
     Route::get('/saldo', [SaldoController::class, 'index']);
 });

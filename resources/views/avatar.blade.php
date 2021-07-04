@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" style="margin-top: -20px;">
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
@@ -34,15 +34,18 @@
 
                         <div class="desc">
                             <label for="name">
+                            Name
                                 <input type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name', $user->name) }}" autocomplete="name" autofocus>
                             </label>
 
                             <label for="phone">
-                                <input type="text" class="@error('phone') is-invalid @enderror" name="phone" value="{{ old('phone', $user->phone) }}" autocomplete="phone" autofocus>
+                            Phone Number ( Ex: +12124614595 )
+                                <input type="text" class="@error('phone') is-invalid @enderror" name="phone" value="{{ old('phone', $user->phone) }}" placaholder="Ex: +12124614595" autocomplete="phone" autofocus>
                             </label>
 
                             <label for="email">
-                                <input type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" autocomplete="email" autofocus>
+                            Email
+                                <input type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" placaholder="Phone Number" autocomplete="email" autofocus>
                             </label>
                         </div>
 
@@ -89,6 +92,7 @@
     .card-one {
         position: relative;
         width: 100%;
+        margin-top: 50px;
         background: var(--color-bg);
         box-shadow: 0 10px 7px -5px rgba(#000, 0.4);
     }
@@ -138,7 +142,7 @@
         left: 44%;
         top: 40px;
         margin-left: -50px;
-        z-index: 5;
+        z-index: 1;
         width: 170px;
         height: 170px;
         border-radius: 50%;
@@ -197,8 +201,8 @@
     button, input {
         border: 0;
         outline: 0;
-        font-size: 18px;
-        color: #9b9dad;
+        font-size: 20px !important;
+        color: #000;
         border-radius: 360px !important;
         padding: 18px 28px;
         background-color: var(--color-bg);
@@ -206,7 +210,6 @@
     }
 
     input {
-        font-family: "Montserrat", sans-serif !important;
         letter-spacing: 0.5px;
         margin-right: 18px;
         box-shadow:  inset 2px 2px 5px var(--color-shadow), inset -5px -5px 10px var(--color-white) !important;
@@ -224,6 +227,7 @@
     label {
         margin: 25px 0;
         flex: 1;
+        font-size: 18px;
     }
 
     .buttons {

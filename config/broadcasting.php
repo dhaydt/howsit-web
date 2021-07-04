@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Broadcaster
@@ -29,14 +28,13 @@ return [
     */
 
     'connections' => [
-
         'pusher' => [
             'driver' => 'pusher',
             'key' => env('PUSHER_APP_KEY'),
             'secret' => env('PUSHER_APP_SECRET'),
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
-                'cluster' => env('PUSHER_APP_CLUSTER'),
+                'cluster' => 'ap1',
                 'useTLS' => true,
             ],
         ],
@@ -58,7 +56,7 @@ return [
         'null' => [
             'driver' => 'null',
         ],
-
     ],
 
+    'AGORA_APP_ID' => env('AGORA_APP_ID', 'eab21235e68e4aa398b5dacae5057c78'),
 ];

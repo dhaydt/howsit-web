@@ -1,16 +1,21 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\FeedController;
+use App\Http\Controllers\admin\loansController;
+use App\Http\Controllers\admin\moneyController;
 use App\Http\Controllers\admin\SaldoController;
+use App\Http\Controllers\admin\sharesController;
 use App\Http\Controllers\AgoraVideoController;
 use App\Http\Controllers\Api\ResetPasswordAPIController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\OtpController;
+use App\Http\Controllers\Auth\ResetPhoneController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\FeedController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PusherNotificationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -28,10 +33,6 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 |
 */
 
-// Route::get('/', function () {
-//         return view('home');
-// });
-
 Route::get('qrcode', function () {
     return QrCode::size(300)->generate('https://soapless-worries.000webhostapp.com/register');
 });
@@ -40,24 +41,41 @@ Route::get('/notification', function () {
     return view('notification');
 });
 
+//----------------------RESET EMAIL PASSWORD----------------//
+
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 })->middleware('guest')->name('password.request');
 
 Route::post('/password/reset', [ResetPasswordAPIController::class, 'reset']);
 
-Route::get('send', [PusherNotificationController::class, 'notification']);
+//----------------------RESET PHONE PASSWORD----------------//
 
-// Auth::routes(['verify' => true]);
-Auth::routes();
+Route::get('/reset-phone', [ResetPhoneController::class, 'showLinkRequestForm'])->name('reset-phone');
+Route::post('/postforget', [ResetPhoneController::class, 'postForget'])->name('postForget');
+Route::get('/verify-phone', [OtpController::class, 'index'])->name('verify-phone');
+Route::post('/post-verify', [OtpController::class, 'verify'])->name('post-verify');
+Route::get('/phone-reset', [OtpController::class, 'resetForm'])->name('phoneReset');
+Route::post('/phone-update', [OtpController::class, 'updatePassword'])->name('phone-updatePassword');
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//-----------------------PHONE VERIFY----------------------//
+Route::get('/phone/verify', function () {
+    return view('auth.phone_verify');
+})->name('phone-verify');
+
+Route::post('/phone/check', [ProfileController::class, 'forgotVerify'])->name('phone-check');
+Route::post('/phone/verif', [AuthController::class, 'phoneVerif'])->name('phone-verified');
+
+Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('feeds', FeedController::class);
     Route::resource('saldos', SaldoController::class);
+    Route::resource('loans', loansController::class);
+    Route::resource('money', moneyController::class);
+    Route::resource('shares', sharesController::class);
 
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/admin', [AdminController::class, 'index']);
@@ -82,7 +100,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/info', [HomeController::class, 'info'])->name('info');
     Route::get('/info/saldo', [HomeController::class, 'get']);
 
+    Route::get('file-import-export', [HomeController::class, 'fileImportExport'])->name('backup');
+    Route::post('file-import', [HomeController::class, 'fileImport'])->name('file-import');
+    Route::post('file-export', [HomeController::class, 'fileExport'])->name('file-export');
+
     Route::get('/setting', [HomeController::class, 'setting'])->name('setting');
+    Route::get('/delete-user', [HomeController::class, 'deleteModal'])->name('delete');
+    Route::get('/setting/destroy', [HomeController::class, 'destroyAccount'])->name('delete-account');
     Route::get('/group', [HomeController::class, 'group'])->name('group');
     Route::get('/furnite', [HomeController::class, 'furnite'])->name('furnite');
     Route::get('/help', [HomeController::class, 'help'])->name('help');
@@ -90,6 +114,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
     Route::post('/profile', [ProfileController::class, 'updateAvatar']);
     Route::post('/profile/update', [ProfileController::class, 'update']);
+    Route::get('/profile/phone', [ProfileController::class, 'phoneVerify']);
+
+    Route::get('/profile/verify', function () {
+        return view('auth.phoneVerify');
+    })->name('verify');
+    Route::post('/profile/verify', [AuthController::class, 'verify'])->name('verified');
 
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 });

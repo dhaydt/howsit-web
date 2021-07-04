@@ -60,7 +60,7 @@
 
                     <div class="field space">
                         <span class="fa fa-envelope"></span>
-                        <input id="email" style="background-color: azure;" type="email" class="@error('email') is-invalid @enderror" name="email" placeholder="{{ __(' E-Mail Address') }}" required autocomplete="email">
+                        <input id="email" style="background-color: azure;" type="email" class="@error('email') is-invalid @enderror" name="email" placeholder="{{ __(' E-Mail Address') }}" required_without:phone autocomplete="email">
 
                         @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -71,7 +71,7 @@
 
                     <div class="field space">
                         <span class="fa fa-phone"></span>
-                        <input id="phone" style="background-color: azure; border-radius: 10px; padding-left: 20px;" type="text" class="@error('phone') is-invalid @enderror" name="phone" placeholder="{{ __(' Phone Number') }}" required autocomplete="phone">
+                        <input id="phone" style="background-color: azure; border-radius: 10px; padding-left: 20px;" type="text" class="@error('phone') is-invalid @enderror" name="phone" placeholder="{{ __(' Phone Number') }}" required_without:email autocomplete="phone">
 
                         @error('phone')
                             <span class="invalid-feedback" role="alert">

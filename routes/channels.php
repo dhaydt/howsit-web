@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Broadcast;
 | used to check if an authenticated user can listen to the channel.
 |
 */
-
+// Broadcast::channel('notify', function ($user, $id) {
+//     return (int) $user->id === (int) $id;
+// });
 
 Broadcast::channel('agora-online-channel', function ($user) {
     return ['id' => $user->id, 'name' => $user->name];
@@ -20,9 +22,9 @@ Broadcast::channel('agora-online-channel', function ($user) {
 
 Broadcast::channel('messages.{id}', function ($user, $id) {
     // dd($user->id, $id);
-    return $user->id === (int)$id;
+    return $user->id === (int) $id;
 });
 
-Broadcast::channel('global-notif', function() {
+Broadcast::channel('global-notif', function () {
     return true;
 });

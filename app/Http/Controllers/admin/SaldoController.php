@@ -11,9 +11,9 @@ class SaldoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:saldo-list|saldo-create|saldo-edit|saldo-delete', ['only' => ['index','show']]);
-        $this->middleware('permission:saldo-create', ['only' => ['create','store']]);
-        $this->middleware('permission:saldo-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:saldo-list|saldo-create|saldo-edit|saldo-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:saldo-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:saldo-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:saldo-delete', ['only' => ['destroy']]);
     }
 
@@ -22,13 +22,15 @@ class SaldoController extends Controller
         $saldos = Saldo::latest()->paginate(4);
         $users = User::where('id', '!=', auth()->id())->get();
 
-        return view('admin.saldos.index',compact('saldos', 'users'))
+        return view('admin.saldos.index', compact('saldos', 'users'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    public function create()
+    public function show($id)
     {
-        //
+        $saldo = Saldo::find($id);
+
+        return view('admin.saldos.show', compact('saldo'));
     }
 
     public function store(Request $request)
@@ -39,7 +41,6 @@ class SaldoController extends Controller
         $user = request()->input('input');
         $user_data = explode('-', $user);
 
-
         $input['user_id'] = $user_data[0];
         $input['name'] = $user_data[1];
 
@@ -48,18 +49,19 @@ class SaldoController extends Controller
         $saldo->save();
 
         return redirect('/saldos')
-                        ->with('success','saldo created successfully');
+                        ->with('success', 'saldo created successfully');
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $this->validate($request, [
-            'saldo' => 'required'
+            'saldo' => 'required',
         ]);
 
         $saldo = Saldo::find($id);
 
         $saldo->saldo = $request->input('saldo');
-            // dd($saldo);
+        // dd($saldo);
         $saldo->save();
 
         return redirect('/saldos')->with('success', 'saldo update');
@@ -68,7 +70,8 @@ class SaldoController extends Controller
     public function destroy($id)
     {
         Saldo::find($id)->delete();
+
         return redirect('/saldos')
-                        ->with('success','User deleted successfully');
+                        ->with('success', 'User deleted successfully');
     }
 }

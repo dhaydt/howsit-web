@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{ url('home') }}" class="brand-link">
         <img src="{{ asset('css/howsit2.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Howsit Admin</span>
     </a>
@@ -13,7 +13,7 @@
                 <img src="{{ url('/images/profile/' .Auth::user()->profile_image) }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                <a href="{{ url('/profile') }}" class="d-block">{{ Auth::user()->name }}</a>
             </div>
         </div>
 
@@ -67,9 +67,42 @@
             @can('saldo-list')
                 <li class="nav-item">
                     <a href="{{ route('saldos.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-dollar-sign"></i>
+                        <i class="nav-icon fas fa-balance-scale"></i>
                         <p>
-                            Saldo
+                            Balance
+                        </p>
+                    </a>
+                </li>
+            @endcan
+            
+            @can('saldo-list')
+                <li class="nav-item">
+                    <a href="{{ route('money.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-money-bill-wave"></i>
+                        <p>
+                            Money
+                        </p>
+                    </a>
+                </li>
+            @endcan
+            
+            @can('saldo-list')
+                <li class="nav-item">
+                    <a href="{{ route('shares.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-donate"></i>
+                        <p>
+                            Shares
+                        </p>
+                    </a>
+                </li>
+            @endcan
+            
+            @can('saldo-list')
+                <li class="nav-item">
+                    <a href="{{ route('loans.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-hand-holding-usd"></i>
+                        <p>
+                            Loans
                         </p>
                     </a>
                 </li>

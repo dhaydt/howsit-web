@@ -3,12 +3,12 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Update Saldo</h5>
+          <h5 class="modal-title" id="exampleModalCenterTitle">Balance Update</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="/saldos/{{ $saldo->id }}" method="POST" id="editSaldo" name="bene" onchange="calculate()">
+        <form action="/saldos/{{ $saldo->id }}" method="POST" id="editSaldo" name="bene" oninput="calculate()">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
         <div class="modal-body">
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="">Old Saldo</label>
+                    <label for="">Old Balance</label>
                     <h5 class="my-0">
                         USD
                         <input id="edit-saldo" class="wallet-balance-per-date" style="border: none; background-color: transparent;" name="oldsaldo">
@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="">New Saldo</label>
+                    <label for="">New Balance</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">USD</div>
