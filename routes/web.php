@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\ResetPasswordAPIController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\Auth\ResetPhoneController;
+use App\Http\Controllers\BackupCloudController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -59,12 +60,19 @@ Route::get('/phone-reset', [OtpController::class, 'resetForm'])->name('phoneRese
 Route::post('/phone-update', [OtpController::class, 'updatePassword'])->name('phone-updatePassword');
 
 //-----------------------PHONE VERIFY----------------------//
+
 Route::get('/phone/verify', function () {
     return view('auth.phone_verify');
 })->name('phone-verify');
 
 Route::post('/phone/check', [ProfileController::class, 'forgotVerify'])->name('phone-check');
 Route::post('/phone/verif', [AuthController::class, 'phoneVerif'])->name('phone-verified');
+
+//---------------------BACKUP CLOUD------------------//
+
+Route::get('test', [BackupCloudController::class, 'googleDrive']);
+
+//--------------------AUTH------------------------//
 
 Auth::routes(['verify' => true]);
 

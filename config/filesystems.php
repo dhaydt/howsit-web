@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Filesystem Disk
@@ -28,8 +27,9 @@ return [
     |
     */
 
-    'disks' => [
+    'cloud' => 'google', // Optional: set Google Drive as default cloud storage
 
+    'disks' => [
         'local' => [
             'driver' => 'local',
             'root' => public_path('/'),
@@ -55,11 +55,18 @@ return [
         'public_uploads' => [
             'driver' => 'local',
             // 'root'   => '/storage',
-            'root'   => public_path() . '/public',
+            'root' => public_path().'/public',
             'visibility' => 'public',
         ],
 
-
+        'google' => [
+            'driver' => 'google',
+            'clientId' => env('GOOGLE_DRIVE_CLIENT_ID'),
+            'clientSecret' => env('GOOGLE_DRIVE_CLIENT_SECRET'),
+            'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN'),
+            'folderId' => env('GOOGLE_DRIVE_FOLDER_ID'),
+            'redirect' => 'http://127.0.0.1:8000/callback/google',
+        ],
     ],
 
     /*
@@ -76,8 +83,6 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
     ],
-
-
 
     // 000webhost
     // 'disks' => [
@@ -111,7 +116,6 @@ return [
     //         'visibility' => 'public_html',
     //     ],
 
-
     // ],
 
     // /*
@@ -129,6 +133,4 @@ return [
     //     public_path('public_html') => storage_path('public_uploads'),
     //     public_path('storage') => storage_path('/ssd3/638/14213638'),
     // ],
-
-
 ];
