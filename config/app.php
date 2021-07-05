@@ -137,6 +137,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        Laravel\Socialite\SocialiteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
@@ -192,6 +193,7 @@ return [
     */
 
     'aliases' => [
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Image' => Intervention\Image\Facades\Image::class,

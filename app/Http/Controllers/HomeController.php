@@ -138,6 +138,6 @@ class HomeController extends Controller
      */
     public function fileExport(Request $request)
     {
-        return Excel::download(new UsersExport($request), 'users-data.csv');
+        return Excel::store(new UsersExport($request), 'backup/users-data.csv');
     }
 }

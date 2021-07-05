@@ -57,8 +57,11 @@
     .alert {
         position: fixed;
         top: 60px;
-        width: 100%;
-        text-align: center;
+        right: 0;
+        font-weight: 600;
+        color: #000;
+        width: fit-content;
+        text-align: left;
         z-index: 2;
     }
 
@@ -66,9 +69,9 @@
         background-color: #f9d6d5b8;
         text-transform: capitalize;
     }
-    
+
     .alert-success {
-        background-color: #d7f3e3c7;
+        background-color: #58f89c;
         text-transform: capitalize;
     }
 </style>

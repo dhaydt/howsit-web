@@ -1,7 +1,7 @@
 <link href="{{ asset('css/b5vtabs.min.css') }}" rel="stylesheet">
 <div class="row">
     <div class="col-md-3">
-        <ul class="nav nav-tabs left-tabs" role="tablist">
+        <ul class="nav nav-tabs left-tabs"  id="tabMenu" role="tablist">
             <h6 class="text-start">Add Money with :</h6>
             <li class="nav-item" role="presentation">
                 <div id="swap-left-tab" class="nav-link tab-clickable active" data-bs-toggle="tab"
@@ -13,7 +13,7 @@
                 in case the tab is trucated-->
                 <div id="backup-left-tab" class="nav-link tab-clickable" data-bs-toggle="tab"
                     data-bs-target="#backup-left" role="tab" aria-controls="backup-left" aria-selected="false">Backup
-                    Account</a>
+                    Account</div>
             </li>
             {{-- <li class="nav-item" role="presentation">
                 <!-- use the title attribute to show a tooltip with the full long name
@@ -66,7 +66,7 @@
                                                 </div>
                                             </div>
                                             <div class="container">
-                                                <form method="POST" action="{{ route('file-export') }}">
+                                                <form method="POST" action="{{ route('upload-file') }}">
                                                     @csrf
 
                                                     <div class="input-group input-group-sm mb-3">
@@ -101,10 +101,17 @@
                                                             aria-label="Sizing example input"
                                                             aria-describedby="inputGroup-sizing-sm">
                                                     </div>
+                                                    
                                                     <div class="d-flex justify-content-evenly input-group">
-                                                        <button class="btn btn-warning" type="submit">DropBox</button>
-                                                        <button class="btn btn-primary" type="submit">GDrive</button>
-                                                        <button class="btn btn-secondary"
+                                                        <button class="btn btn-primary" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top" title="Backup to Google Drive"
+                                                            type="submit" style="color: white; font-weight: 600;">
+                                                            <i class="fab fa-google-drive" style="color:white"></i>
+                                                            Google Drive</button>
+                                                        <button class="btn btn-warning disabled" type="submit"
+                                                            style="font-weight: 600;">DropBox</button>
+                                                        <button class="btn btn-secondary disabled"
+                                                            style="color: white; font-weight: 600;"
                                                             type="submit">OneDrive</button>
                                                     </div>
                                                 </form>
@@ -130,28 +137,26 @@
                                             </div>
                                             <div class="container">
                                                 <form action="{{ route('file-import') }}" method="POST"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="form-group mb-4"
-                                                        style="max-width: 500px; margin: 0 auto;">
-                                                        <div class="custom-file text-left">
-                                                            <input type="file" name="file" class="custom-file-input"
-                                                                id="customFile">
-                                                            <label class="custom-file-label" for="customFile">Choose
-                                                                file</label>
-                                                        </div>
-                                                    </div>
-                                                    <button class="btn btn-primary">Restore data</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </article> --}}
+                enctype="multipart/form-data">
+                @csrf
+                <div class="form-group mb-4" style="max-width: 500px; margin: 0 auto;">
+                    <div class="custom-file text-left">
+                        <input type="file" name="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose
+                            file</label>
+                    </div>
+                </div>
+                <button class="btn btn-primary">Restore data</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
+</div>
+</div>
+</section>
+</article> --}}
+</div>
+</div>
+</div>
 </div>

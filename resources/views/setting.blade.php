@@ -1,167 +1,115 @@
 @extends('layouts.app')
 @stack('css')
 @section('content')
-    {{-- <setting-page :users="{{ auth()->user()}}"></setting-page> --}}
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-12 ml-auto col-xl-6 mr-auto">
-                <!-- Nav tabs -->
-                <div class="card">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs justify-content-center"
-                            role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active"
-                                    data-toggle="tab"
-                                    href="#myaccount"
-                                    role="tab">
-                                    <i class="fas fa-user-cog me-1"></i> My Account
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    data-toggle="tab"
-                                    href="#backup"
-                                    role="tab">
-                                    <i class="fas fa-hdd me-2"></i> Mpesa etc
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    data-toggle="tab"
-                                    href="#delete"
-                                    role="tab">
-                                    <i class="fas fa-trash me-2"></i> Delete Account
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <!-- Tab panes -->
-                        <div class="tab-content text-center">
-                            <div class="tab-pane active"
-                                id="myaccount"
-                                role="tabpanel">
-                                {{-- <h3 class="mb-4 category">
+{{-- <setting-page :users="{{ auth()->user()}}"></setting-page> --}}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 ml-auto col-xl-6 mr-auto">
+            <!-- Nav tabs -->
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs justify-content-center" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#myaccount" role="tab">
+                                <i class="fas fa-user-cog me-1"></i> My Account
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#backup" role="tab">
+                                <i class="fas fa-hdd me-2"></i> Mpesa etc
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#delete" role="tab">
+                                <i class="fas fa-trash me-2"></i> Delete Account
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <!-- Tab panes -->
+                    <div class="tab-content text-center">
+                        <div class="tab-pane active" id="myaccount" role="tabpanel">
+                            {{-- <h3 class="mb-4 category">
                                     My Account
                                 </h3> --}}
-                                @include('components.account')
-                            </div>
-                            <div class="tab-pane"
-                                id="backup"
-                                role="tabpanel">
-                                @include('components.mpesa')
-                                {{-- <form method="POST"
+                            @include('components.account')
+                        </div>
+                        <div class="tab-pane" id="backup" role="tabpanel">
+                            @include('components.mpesa')
+                            {{-- <form method="POST"
                                     action="{{ route('file-export') }}">
-                                    @csrf
+                            @csrf
 
-                                    <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text"
-                                            id="inputGroup-sizing-sm">ID</span>
-                                        <input id="id"
-                                            name="id"
-                                            type="text"
-                                            class="form-control"
-                                            value="{{ Auth::user()->id }}"
-                                            readonly
-                                            aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text"
-                                            id="inputGroup-sizing-sm">Name</span>
-                                        <input id="name"
-                                            name="name"
-                                            type="text"
-                                            class="form-control"
-                                            value="{{ Auth::user()->name }}"
-                                            readonly
-                                            aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text"
-                                            id="inputGroup-sizing-sm">Phone</span>
-                                        <input id="phone"
-                                            name="phone"
-                                            type="text"
-                                            class="form-control"
-                                            value="{{ Auth::user()->phone }}"
-                                            readonly
-                                            aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text"
-                                            id="inputGroup-sizing-sm">Email</span>
-                                        <input id="email"
-                                            name="email"
-                                            type="text"
-                                            class="form-control"
-                                            value="{{ Auth::user()->email }}"
-                                            readonly
-                                            aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <button class="btn btn-warning"
-                                        type="submit">Backup data</button>
-                                </form> --}}
+                            <div class="input-group input-group-sm mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">ID</span>
+                                <input id="id" name="id" type="text" class="form-control" value="{{ Auth::user()->id }}"
+                                    readonly aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                             </div>
-                            <div class="tab-pane"
-                                id="restore"
-                                role="tabpanel">
-                                
+                            <div class="input-group input-group-sm mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+                                <input id="name" name="name" type="text" class="form-control"
+                                    value="{{ Auth::user()->name }}" readonly aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-sm">
                             </div>
-                            <div class="tab-pane"
-                                id="delete"
-                                role="tabpanel">
-                                <h3 class="category">delete account</h3>
-                                <a data-toggle="modal"
-                                    id="smallButton"
-                                    data-target="#smallModal"
-                                    data-attr="{{ route('delete') }}"
-                                    title="Delete Account">
-                                    <button class="btn btn-danger elevation-2"
-                                        dark><i class="fas fa-trash text-light me-2"></i> <span class="text-white">Delete
-                                            Account</span> </button>
-                                </a>
+                            <div class="input-group input-group-sm mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Phone</span>
+                                <input id="phone" name="phone" type="text" class="form-control"
+                                    value="{{ Auth::user()->phone }}" readonly aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-sm">
                             </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+                                <input id="email" name="email" type="text" class="form-control"
+                                    value="{{ Auth::user()->email }}" readonly aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                            <button class="btn btn-warning" type="submit">Backup data</button>
+                            </form> --}}
+                        </div>
+                        <div class="tab-pane" id="restore" role="tabpanel">
+
+                        </div>
+                        <div class="tab-pane" id="delete" role="tabpanel">
+                            <h3 class="category">delete account</h3>
+                            <a data-toggle="modal" id="smallButton" data-target="#smallModal"
+                                data-attr="{{ route('delete') }}" title="Delete Account">
+                                <button class="btn btn-danger elevation-2" dark><i
+                                        class="fas fa-trash text-light me-2"></i> <span class="text-white">Delete
+                                        Account</span> </button>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-            {{-- !-- Delete Warning Modal --> --}}
-
-
-            <!-- small modal -->
-            <div class="modal fade"
-                id="smallModal"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="smallModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-md"
-                    role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Delete Account Confirmation</h5>
-                        </div>
-                        <div class="modal-body"
-                            id="smallBody">
-                            <div>
-                                <!-- the result to be displayed apply here -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Tabs on plain Card -->
         </div>
+        {{-- !-- Delete Warning Modal --> --}}
+
+
+        <!-- small modal -->
+        <div class="modal fade" id="smallModal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete Account Confirmation</h5>
+                    </div>
+                    <div class="modal-body" id="smallBody">
+                        <div>
+                            <!-- the result to be displayed apply here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Tabs on plain Card -->
     </div>
-    </div>
+</div>
+</div>
 @endsection
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script>
     // display a modal (small modal)
     $(document).on('click', '#smallButton', function(event) {
@@ -189,6 +137,7 @@
         })
     });
 </script>
+
 
 @push('css')
 <style>
@@ -493,6 +442,5 @@
             margin-bottom: 5px;
         }
     }
-
 </style>
 @endpush

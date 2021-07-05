@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
@@ -30,4 +29,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'app_name' => env('APP_NAME'),
+        'client_id' => env('GOOGLE_DRIVE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_DRIVE_CLIENT_SECRET'),
+        'api_key' => env('AIzaSyCMxGfm_DyARiVBB4rtpanVgxlFCKtupUg'),
+    ],
 ];

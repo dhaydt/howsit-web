@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\sharesController;
 use App\Http\Controllers\AgoraVideoController;
 use App\Http\Controllers\Api\ResetPasswordAPIController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\Auth\ResetPhoneController;
 use App\Http\Controllers\BackupCloudController;
@@ -69,8 +70,12 @@ Route::post('/phone/check', [ProfileController::class, 'forgotVerify'])->name('p
 Route::post('/phone/verif', [AuthController::class, 'phoneVerif'])->name('phone-verified');
 
 //---------------------BACKUP CLOUD------------------//
-
+// Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+// Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 Route::get('test', [BackupCloudController::class, 'googleDrive']);
+
+Route::get('glogin', [GoogleController::class, 'googleLogin'])->name('glogin');
+Route::post('upload-file', [GoogleController::class, 'uploadFileUsingAccessToken'])->name('upload-file');
 
 //--------------------AUTH------------------------//
 
