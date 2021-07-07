@@ -4,8 +4,10 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\FeedController;
 use App\Http\Controllers\admin\loansController;
 use App\Http\Controllers\admin\moneyController;
+use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\SaldoController;
 use App\Http\Controllers\admin\sharesController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\AgoraVideoController;
 use App\Http\Controllers\Api\ResetPasswordAPIController;
 use App\Http\Controllers\Auth\AuthController;
@@ -17,9 +19,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\InfoController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -112,6 +113,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/info', [HomeController::class, 'info'])->name('info');
     Route::get('/info/saldo', [HomeController::class, 'get']);
+    Route::get('/info/loans', [InfoController::class, 'getLoans']);
 
     Route::get('file-import-export', [HomeController::class, 'fileImportExport'])->name('backup');
     Route::post('file-import', [HomeController::class, 'fileImport'])->name('file-import');

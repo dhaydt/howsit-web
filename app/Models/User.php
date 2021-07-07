@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Google\Service\Slides\Image;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -55,6 +56,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function images()
     {
         return $this->hasMany(Image::class);
+    }
+
+    public function loan()
+    {
+        return $this->hasMany(Loan::class, 'user_id');
     }
 
     public function saldo()

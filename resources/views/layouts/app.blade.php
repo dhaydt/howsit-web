@@ -173,6 +173,7 @@
                                 </div>
                             </div>
                         </div>
+                        @can('admin-list')
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="flush-headingAdmin">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -188,18 +189,17 @@
                                 aria-labelledby="flush-headingAdmin" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
                                     <li>
-                                        @can('admin-list')
                                         <a class="dropdown-item" href="{{ url('/admin') }}" style="margin-top: 15px;">
                                             <div class="rounded-bg">
                                                 <i class="fas fa-users-cog"></i>
                                             </div>
                                             <p>Admin Panel</p>
                                         </a>
-                                        @endcan
                                     </li>
                                 </div>
                             </div>
                         </div>
+                        @endcan
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="flush-headingTwo">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"

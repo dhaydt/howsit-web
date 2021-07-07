@@ -30,7 +30,7 @@ global style
 }
 
 *:not(i) {
-    font-family: 'Alegreya', serif;
+    font-family: "Nunito", sans-serif;
     font-weight: 400;
 }
 

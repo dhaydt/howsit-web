@@ -15,14 +15,14 @@
 
 
 @if (count($errors) > 0)
-  <div class="alert alert-danger">
+<div class="alert alert-danger">
     <strong>Whoops!</strong> There were some problems with your input.<br><br>
     <ul>
-       @foreach ($errors->all() as $error)
-         <li>{{ $error }}</li>
-       @endforeach
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
     </ul>
-  </div>
+</div>
 @endif
 
 
@@ -49,13 +49,26 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Confirm Password:</strong>
-            {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
+            {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control'))
+            !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Role:</strong>
-            {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
+            <strong>Roles:</strong>
+            {{-- @dd($roles, $userRole); --}}
+            @foreach ($roles as $role )
+            <div class="d-flex flex-column">
+                <label
+                    class="mr-1 ml-2">
+                    {{ Form::checkbox('roles[]', 
+                        $role->name, in_array($role->name, $userRole) 
+                        ? true : false, 
+                        array('class' => 'name')) }}
+                        <span>{{ $role->name }}</span>
+                    </label>
+            </div>
+            @endforeach
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">

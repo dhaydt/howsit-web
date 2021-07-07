@@ -1,17 +1,17 @@
 <link href="{{ asset('css/b5vtabs.min.css') }}" rel="stylesheet">
 <div class="row">
     <div class="col-md-3">
-        <ul class="nav nav-tabs left-tabs"  id="tabMenu" role="tablist">
+        <ul class="nav nav-tabs left-tabs" role="tablist">
             <h6 class="text-start">Add Money with :</h6>
             <li class="nav-item" role="presentation">
-                <div id="swap-left-tab" class="nav-link tab-clickable active" data-bs-toggle="tab"
+                <div id="swap-left-tab" class="nav-link tab-clickable" data-bs-toggle="tab"
                     data-bs-target="#swap-left" role="tab" aria-controls="swap-left" aria-selected="true">Swap
                     number</a>
             </li>
             <li class="nav-item" role="presentation">
                 <!-- use the title attribute to show a tooltip with the full long name
                 in case the tab is trucated-->
-                <div id="backup-left-tab" class="nav-link tab-clickable" data-bs-toggle="tab"
+                <div id="backup-left-tab" class="nav-link tab-clickable active" data-bs-toggle="tab"
                     data-bs-target="#backup-left" role="tab" aria-controls="backup-left" aria-selected="false">Backup
                     Account</div>
             </li>
@@ -29,7 +29,7 @@
     <div class="col-md-9">
         <div class="container">
             <div class="tab-content">
-                <article class="tab-pane fade show active" role="tabpanel" aria-labelledby="swap-left-tab"
+                <article class="tab-pane fade" role="tabpanel" aria-labelledby="swap-left-tab"
                     id="swap-left">
                     <section>
                         <div class="card">
@@ -53,7 +53,7 @@
                         </div>
                     </section>
                 </article>
-                <article class="tab-pane fade" role="tabpanel" aria-labelledby="backup-left-tab" id="backup-left">
+                <article class="tab-pane fade show active" role="tabpanel" aria-labelledby="backup-left-tab" id="backup-left">
                     <section>
                         <div class="card">
                             <div class="card-body">

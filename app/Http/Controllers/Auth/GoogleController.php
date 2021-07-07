@@ -61,7 +61,10 @@ class GoogleController extends Controller
             // dd($user->access_token, $request);
             $user->save();
             // dd('Successfully authenticated');
-            return redirect()->route('setting')->with('success', 'google dirve was authorized!, Please "CLICK" Google Drive button again');
+            return redirect()
+                ->back()
+                ->withInput(['tab' => 'backup'])
+                ->with('success', 'google dirve was authorized!, Please "CLICK" Google Drive button again to continue backup data');
         } else {
             //For Guest user, get google login url
             $authUrl = $this->gClient->createAuthUrl();
@@ -96,10 +99,10 @@ class GoogleController extends Controller
                 // dd($user->access_token, $request);
                 $user->save();
                 // dd('Successfully authenticated');
-                return redirect()
-                    // ->route('setting')
-                    ->back()->withInput(['tab' => 'backup-left'])
-                    ->with('success', 'google dirve was authorized!, Please "CLICK" Google Drive button again');
+                return
+                redirect()
+                ->back()->withInput(['tab' => 'backup'])
+                    ->with('success', 'google dirve was authorized!, Please "CLICK" Google Drive button again to continue backup data');
             } else {
                 //For Guest user, get google login url
                 $authUrl = $this->gClient->createAuthUrl();
@@ -129,7 +132,9 @@ class GoogleController extends Controller
             $user->save();
         }
 
-        $backupName = 'user-data'.time().'.csv';
+        $name = $user->name;
+        // dd($name);
+        $backupName = $name.time().'.csv';
         Excel::store(new UsersExport($request), 'backup/'.$backupName);
         // dd($backupName);
 
@@ -154,7 +159,10 @@ class GoogleController extends Controller
         // get url of uploaded file
         $url = 'https://drive.google.com/open?id='.$result->id;
 
-        return redirect()->back()->with('success', 'Data backup successfully!');
+        return
+        redirect()
+        ->back()->withInput(['tab' => 'backup'])
+            ->with('success', 'Data backup successfully!');
     }
 
     public function redirectToGoogle()

@@ -8,7 +8,7 @@
             <!-- Nav tabs -->
             <div class="card">
                 <div class="card-header">
-                    <ul class="nav nav-tabs justify-content-center" role="tablist">
+                    <ul class="nav nav-tabs justify-content-center" id="tabMenu" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#myaccount" role="tab">
                                 <i class="fas fa-user-cog me-1"></i> My Account
@@ -37,35 +37,7 @@
                         </div>
                         <div class="tab-pane" id="backup" role="tabpanel">
                             @include('components.mpesa')
-                            {{-- <form method="POST"
-                                    action="{{ route('file-export') }}">
-                            @csrf
-
-                            <div class="input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">ID</span>
-                                <input id="id" name="id" type="text" class="form-control" value="{{ Auth::user()->id }}"
-                                    readonly aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
-                                <input id="name" name="name" type="text" class="form-control"
-                                    value="{{ Auth::user()->name }}" readonly aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-sm">
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Phone</span>
-                                <input id="phone" name="phone" type="text" class="form-control"
-                                    value="{{ Auth::user()->phone }}" readonly aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-sm">
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
-                                <input id="email" name="email" type="text" class="form-control"
-                                    value="{{ Auth::user()->email }}" readonly aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-sm">
-                            </div>
-                            <button class="btn btn-warning" type="submit">Backup data</button>
-                            </form> --}}
+                            
                         </div>
                         <div class="tab-pane" id="restore" role="tabpanel">
 
@@ -110,6 +82,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/tooltip.js"></script>
 <script>
     // display a modal (small modal)
     $(document).on('click', '#smallButton', function(event) {
@@ -135,6 +108,12 @@
             },
             timeout: 8000
         })
+    });
+
+    $("[data-toggle=tooltip").tooltip();
+
+    $(document).ready(function () {
+        $('#tabMenu a[href="#{{ old('tab') }}"]').tab('show')
     });
 </script>
 

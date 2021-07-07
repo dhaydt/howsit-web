@@ -35,7 +35,7 @@
                                         </v-tab>
                                         <v-tab class="tab-ver-header m-2">
                                             <v-icon left>fas fa-wallet</v-icon>
-                                            Add Wallet
+                                            Ad Wallet
                                         </v-tab>
 
                                         <v-tab-item class="howsitBalance">
@@ -56,8 +56,8 @@
                                                         >Make a Payment</v-tab
                                                     >
                                                     <v-tab class="tab-ver-sub"
-                                                        >Land money to
-                                                        borrowers</v-tab
+                                                        >Lend money to
+                                                        borrower</v-tab
                                                     >
 
                                                     <v-tab-item class="balance">
@@ -127,7 +127,7 @@
                                                     </v-tab-item>
 
                                                     <v-tab-item
-                                                        class="landMoney"
+                                                        class="lendMoney"
                                                     >
                                                         <v-container fluid>
                                                             <v-row>
@@ -138,7 +138,7 @@
                                                                     <p
                                                                         class="text-center"
                                                                     >
-                                                                        land
+                                                                        lend
                                                                         money to
                                                                         borower
                                                                     </p>
@@ -174,18 +174,29 @@
                                                                     cols="12"
                                                                     md="12"
                                                                 >
-                                                                    <p
-                                                                        class="text-center"
-                                                                    >
-                                                                        total
-                                                                        loans
-                                                                    </p>
+                                                                    <v-card>
+                                                                        <v-card-subtitle>
+                                                                            Total Loans
+                                                                        </v-card-subtitle>
+                                                                        <v-card-title
+                                                                            class="justify-content-center d-flex fw-bold"
+                                                                        >
+                                                                            <span>
+                                                                                USD
+                                                                                {{
+                                                                                    total
+                                                                                        ? total
+                                                                                        : "0"
+                                                                                }}
+                                                                            </span>
+                                                                        </v-card-title>
+                                                                    </v-card>
                                                                 </v-col>
                                                             </v-row>
                                                         </v-container>
                                                     </v-tab-item>
                                                     <v-tab-item
-                                                        class="listBorrowers"
+                                                        class="listborrower"
                                                     >
                                                         <v-container fluid>
                                                             <v-row>
@@ -193,12 +204,14 @@
                                                                     cols="12"
                                                                     md="12"
                                                                 >
-                                                                    <p
-                                                                        class="text-center"
+                                                                    <v-data-table
+                                                                        :headers="
+                                                                            headers"
+                                                                        :items="
+                                                                            loans"
+                                                                        class="elevation-1"
                                                                     >
-                                                                        list
-                                                                        borower
-                                                                    </p>
+                                                                    </v-data-table>
                                                                 </v-col>
                                                             </v-row>
                                                         </v-container>
@@ -368,24 +381,63 @@
                                                                                 <v-expansion-panel-header
                                                                                     >Balance</v-expansion-panel-header
                                                                                 >
-                                                                                <v-expansion-panel-content class="text-center">
-                                                                                    <label for="" >USD 50</label>
+                                                                                <v-expansion-panel-content
+                                                                                    class="text-center"
+                                                                                >
+                                                                                    <label
+                                                                                        for=""
+                                                                                        >USD
+                                                                                        50</label
+                                                                                    >
                                                                                 </v-expansion-panel-content>
                                                                             </v-expansion-panel>
                                                                             <v-expansion-panel>
                                                                                 <v-expansion-panel-header
                                                                                     >Advertising</v-expansion-panel-header
                                                                                 >
-                                                                                <v-expansion-panel-content class="text-center">
-                                                                                    Opt into Advertising in the Howsit App and earn rewards and free data
+                                                                                <v-expansion-panel-content
+                                                                                    class="text-center"
+                                                                                >
+                                                                                    Opt
+                                                                                    into
+                                                                                    Advertising
+                                                                                    in
+                                                                                    the
+                                                                                    Howsit
+                                                                                    App
+                                                                                    and
+                                                                                    earn
+                                                                                    rewards
+                                                                                    and
+                                                                                    free
+                                                                                    data
                                                                                 </v-expansion-panel-content>
                                                                             </v-expansion-panel>
                                                                             <v-expansion-panel>
                                                                                 <v-expansion-panel-header
                                                                                     >Rewards</v-expansion-panel-header
                                                                                 >
-                                                                                <v-expansion-panel-content class="text-center">
-                                                                                    Free data from advertiser is our way of giving back to users, so everyone can enjoy Howsit worldwide
+                                                                                <v-expansion-panel-content
+                                                                                    class="text-center"
+                                                                                >
+                                                                                    Free
+                                                                                    data
+                                                                                    from
+                                                                                    advertiser
+                                                                                    is
+                                                                                    our
+                                                                                    way
+                                                                                    of
+                                                                                    giving
+                                                                                    back
+                                                                                    to
+                                                                                    users,
+                                                                                    so
+                                                                                    everyone
+                                                                                    can
+                                                                                    enjoy
+                                                                                    Howsit
+                                                                                    worldwide
                                                                                 </v-expansion-panel-content>
                                                                             </v-expansion-panel>
                                                                         </v-expansion-panels>
@@ -581,7 +633,6 @@
 
 <script>
 import moment from "moment";
-import Vue from "vue";
 
 export default {
     props: {
@@ -598,8 +649,28 @@ export default {
             item: {
                 divider: true,
                 inset: true
-            }
+            },
+            dateFormat: "DD-MM-YYYY",
+            total: null,
+            headers: [
+                {
+                    text: 'Borrower',
+                    align: 'end',
+                    sortable: true,
+                    value: 'to',
+                },
+                { text: 'Loan (USD)', value: 'loan' },
+                { text: 'Date', value: 'created_at'},
+            ],
+            loans: [],
         };
+    },
+    // formatter: (x) => (x ? moment(x).format(this.dateFormat) : null),
+
+    watch: {
+        // date: function(date) {
+        //     return moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+        // },
     },
 
     mounted() {
@@ -609,6 +680,25 @@ export default {
                 return moment(String(value)).format("DD/MM/YYYY | hh:mm");
             }
         });
+
+        this.getLoans();
+    },
+
+    methods: {
+        getLoans() {
+            axios.get("/info/loans").then(response => {
+                this.loans = response.data.loans;
+                this.total = response.data.sum;
+                console.log("loans", this.total);
+            });
+        },
+
+        // sumField(loan) {
+        //     // sum data in give key (property)
+        //     this.total = this.loans.reduce((a, b) => a + (b[loan] || 0), 0);
+        //     console.log(this.total);
+        //     return this.total
+        // }
     }
 };
 </script>

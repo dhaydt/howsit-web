@@ -104,8 +104,8 @@ span.unread {
     background: #82e0a8;
     color: #fff;
     position: absolute;
-    right: 11px;
-    top: 20px;
+    right: -5px;
+    top: 4px;
     display: flex;
     font-weight: 700;
     min-width: 20px;
@@ -115,6 +115,7 @@ span.unread {
     font-size: 12px;
     padding: 0 4px;
     border-radius: 3px;
+    z-index: 1;
 }
 
 .user-info {

@@ -52,5 +52,5 @@
 {!! Form::close() !!}
 
 
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
+<p class="text-center text-primary"><small>find me :  <i class="fab fa-instagram"></i> @910dayat</small></p>
 @endsection

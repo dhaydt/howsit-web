@@ -46,4 +46,5 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::delete('/home/{id}', [APIFeedController::class, 'destroy']);
 
     Route::get('/saldo', [SaldoController::class, 'index']);
+    Route::get('/loans', [SaldoController::class, 'getLoans']);
 });

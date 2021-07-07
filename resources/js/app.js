@@ -3,6 +3,7 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+import moment from 'moment';
 import VueEvents from 'vue-events'
 import VueResource from 'vue-resource';
 import Vue from 'vue';
@@ -13,10 +14,18 @@ window.Vue = require('vue').default;
 window.Vue = require('vue')
 require('vue-events')
 
+
+
 Vue.use(VueResource)
 const VueUploadComponent = require('vue-upload-component')
 Vue.component('file-upload', VueUploadComponent)
 Vue.use(VueEvents)
+
+Vue.filter('formatDate', function(value) {
+    if (value) {
+        return moment(String(value)).format('DD/MM/YYYY | hh:mm')
+    }
+});
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
