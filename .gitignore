@@ -1,9 +1,10 @@
-/node_modules
+# /node_modules
 
-/public/storage
-/storage/*.key
-/vendor
-/public
+/public/storage/
+# /storage/*.key
+# /vendor
+# /public
+/storage/app/public/
 
 .env
 .phpunit.result.cache

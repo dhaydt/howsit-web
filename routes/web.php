@@ -82,7 +82,7 @@ Route::post('upload-file', [GoogleController::class, 'uploadFileUsingAccessToken
 
 Auth::routes(['verify' => true]);
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'cors']], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('feeds', FeedController::class);
