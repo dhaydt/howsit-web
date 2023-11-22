@@ -42,6 +42,8 @@ class APIFeedController extends Controller
             return response()->json(['error' => $validator->errors()], 401);
         }
 
+        $user = $request->user();
+
         if ($files = $request->file('image')) {
             $image_new_name = time().$files->getClientOriginalName();
             //store file into document folder
@@ -50,8 +52,8 @@ class APIFeedController extends Controller
             //store your file into database
             $post = new Image();
             $post->image = 'images/'.$image_new_name;
-            $post->user_id = $request->id;
-            $post->name = $request->name;
+            $post->user_id = $user->id;
+            $post->name = $user->name;
             $post->caption = $request->caption;
             $post->save();
 
