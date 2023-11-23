@@ -17,9 +17,7 @@
 
 namespace Google\Service\Slides;
 
-use Google\Model;
-
-class Image extends Model
+class Image extends \Google\Model
 {
   /**
    * @var string

@@ -58,5 +58,6 @@ return [
         ],
     ],
 
-    'AGORA_APP_ID' => env('AGORA_APP_ID', 'eab21235e68e4aa398b5dacae5057c78'),
+    // 'AGORA_APP_ID' => env('AGORA_APP_ID', 'eab21235e68e4aa398b5dacae5057c78'),
+    'AGORA_APP_ID' => env('AGORA_APP_ID', 'baa683240726439d947c4b5b436cd033'),
 ];
