@@ -266,9 +266,10 @@ export default {
          * Agora Events and Listeners
          */
         initializeAgora() {
+            console.log('agora id', this.agora_id)
             this.client = AgoraRTC.createClient({ mode: "rtc", codec: "h264" });
             this.client.init(
-                this.agora_id,
+                'eab21235e68e4aa398b5dacae5057c78',
                 () => {
                     console.log("AgoraRTC client initialized");
                 },
