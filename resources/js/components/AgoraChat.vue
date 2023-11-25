@@ -232,7 +232,7 @@ export default {
                 const channelName = `${this.authuser}_${calleeName}`;
                 const tokenRes = await this.generateToken(channelName);
 
-                console.log('channel', channelName, res);
+                console.log('channel', channelName, tokenRes);
                 // Broadcasts a call event to the callee and also gets back the token
                 await axios.post("/agora/call-user", {
                     user_to_call: id,
