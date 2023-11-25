@@ -12,8 +12,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://cdn.agora.io/sdk/release/AgoraRTCSDK-3.3.1.js"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/agora-rtc-sdk@3.6.11/AgoraRTCSDK.min.js"></script> --}}
+    {{-- <script src="https://cdn.agora.io/sdk/release/AgoraRTCSDK-3.3.1.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/agora-rtc-sdk@3.6.11/AgoraRTCSDK.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
