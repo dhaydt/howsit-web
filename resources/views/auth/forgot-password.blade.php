@@ -29,7 +29,7 @@
                                 required
                                 autocomplete="email"
                                 autofocus
-                                placeholder="Masukkan Alamat Email">
+                                placeholder="Email Address">
 
                             @error('email')
                                 <div class="alert alert-danger mt-2">

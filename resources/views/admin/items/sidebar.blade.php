@@ -64,7 +64,7 @@
                 </li>
             @endcan
 
-            @can('saldo-list')
+            {{-- @can('saldo-list') --}}
                 <li class="nav-item">
                     <a href="{{ route('saldos.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-balance-scale"></i>
@@ -73,9 +73,9 @@
                         </p>
                     </a>
                 </li>
-            @endcan
+            {{-- @endcan --}}
             
-            @can('saldo-list')
+            {{-- @can('saldo-list') --}}
                 <li class="nav-item">
                     <a href="{{ route('money.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-money-bill-wave"></i>
@@ -84,9 +84,9 @@
                         </p>
                     </a>
                 </li>
-            @endcan
+            {{-- @endcan --}}
             
-            @can('saldo-list')
+            {{-- @can('saldo-list') --}}
                 <li class="nav-item">
                     <a href="{{ route('shares.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-donate"></i>
@@ -95,9 +95,9 @@
                         </p>
                     </a>
                 </li>
-            @endcan
+            {{-- @endcan --}}
             
-            @can('saldo-list')
+            {{-- @can('saldo-list') --}}
                 <li class="nav-item">
                     <a href="{{ route('loans.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-hand-holding-usd"></i>
@@ -106,7 +106,7 @@
                         </p>
                     </a>
                 </li>
-            @endcan
+            {{-- @endcan --}}
 
             <li class="nav-item">
                 <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

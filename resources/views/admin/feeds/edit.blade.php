@@ -25,17 +25,17 @@
         </div>
     @endif
 
-
-    <form action="{{ route('feeds.update',$image->id) }}" method="POST">
+    <form action="{{ route('feeds.update_feed', $image->id) }}" method="POST">
     	@csrf
-        @method('PUT')
-
-
+        {{-- @method('PUT') --}}
          <div class="row">
 		    <div class="col-xs-12 col-sm-12 col-md-12">
-		        <div class="form-group">
-		            <strong>Name:</strong>
-		            <input type="text" name="name" value="{{ $image->name }}" class="form-control" placeholder="Name">
+		        <div class="form-group mt-2">
+                    <img src="{{ url($image->image) }}" class="img-circle elevation-2" alt="Feed Image" style="height: 100px; width: 100px;">
+		            <div class="form-group">
+                        <strong>Change Image</strong>
+                        <input type="file" name="image[]" id="img" class="form-control" multiple accept="image/" >
+                    </div>
 		        </div>
 		    </div>
 		    <div class="col-xs-12 col-sm-12 col-md-12">

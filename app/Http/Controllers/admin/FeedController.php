@@ -89,8 +89,9 @@ class FeedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Image $image)
+    public function edit($id)
     {
+        $image = Image::find($id);
         return view('admin.feeds.edit', compact('image'));
     }
 
@@ -99,17 +100,40 @@ class FeedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Image $image)
+    public function update(Request $request, $id)
     {
         request()->validate([
-            'name' => 'required',
+            'image' => 'required',
             'detail' => 'required',
         ]);
 
-        $image->update($request->all());
+        
+        $post = Image::find($id);
+        
+        $images = $request->image;
 
-        return redirect('feeds.index')
-                        ->with('success', 'Images updated successfully');
+        $caption = $request->caption;
+
+        if($images[0] !== null){
+            foreach ($images as $image) {
+                $image_new_name = time().$image->getClientOriginalName();
+                $image->move('images', $image_new_name);
+    
+                $post->image = 'images/'.$image_new_name;
+    
+                $post->user_id = Auth::user()->id;
+                $post->caption = $caption;
+                $post->name = Auth::user()->name;
+                $post->save();
+            }
+        }else{    
+            $post->caption = $request->detail;
+            $post->save();
+        }
+
+        Session::flash('success', 'Image Posted');
+
+        return redirect('/feeds')->with('success', 'Feed updated successfully.');
     }
 
     /**

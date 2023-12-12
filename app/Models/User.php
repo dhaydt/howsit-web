@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Image as ModelsImage;
 use Google\Service\Slides\Image;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -70,7 +71,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function likedImages()
     {
-        return $this->belongsToMany(Image::class)->withTimestamps();
+        return $this->belongsToMany(ModelsImage::class)->withTimestamps();
     }
 
     public function findForPassport($identifier)

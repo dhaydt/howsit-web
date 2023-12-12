@@ -8,7 +8,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="/loans/{{ $loan->id }}" method="POST" id="editloan" name="bene" oninput="calculate()">
+        <form action="/loans/{{ $loan->id ?? 0 }}" method="POST" id="editloan" name="bene" oninput="calculate()">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
         <div class="modal-body">

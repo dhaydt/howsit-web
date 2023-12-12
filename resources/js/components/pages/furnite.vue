@@ -8,8 +8,8 @@
                         <i class="fas fa-qrcode"></i> QR Code
                         <div class=""></div>
                     </div>
-                    <div><i class="fa fa-barcode"></i> Scan</div>
-                    <div><i class="fa fa-user-plus"></i> Send invite</div>
+                    <!-- <div><i class="fa fa-barcode"></i> Scan</div> -->
+                    <!-- <div><i class="fa fa-user-plus"></i> Send invite</div> -->
                 </div>
                 <div class="tab-indicator"></div>
                 <div class="tab-content">
@@ -17,7 +17,7 @@
                         <i class="fa fa-qrcode"></i>
                         <h2>Scan Me</h2>
                         <div class="qrcode">
-                            <img src="images/grcode/qrcode.svg" alt="" />
+                            <img src="images/grcode/scanme.png" alt="" />
                         </div>
                     </div>
 

@@ -21,6 +21,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController as ControllersRoleController;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -38,6 +40,17 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 Route::get('qrcode', function () {
     return QrCode::size(300)->generate('https://soapless-worries.000webhostapp.com/register');
+});
+
+Route::get('assign_valor', function(){
+    $user = User::where('email', 'valormcdonald@gmail.com')->first();
+    if($user){
+        $user->assignRole('Admin');
+        dd('valor assigned as admin');
+    }else{
+        dd('user not found');
+    }
+
 });
 
 Route::get('/notification', function () {
@@ -90,6 +103,10 @@ Route::group(['middleware' => ['auth', 'cors']], function () {
     Route::resource('loans', loansController::class);
     Route::resource('money', moneyController::class);
     Route::resource('shares', sharesController::class);
+
+    Route::post('update_feed_admin/{id}', [FeedController::class, 'update'])->name('feeds.update_feed');
+
+    Route::get('assign_admin', [ControllersRoleController::class, 'assign']);
 
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/admin', [AdminController::class, 'index']);
