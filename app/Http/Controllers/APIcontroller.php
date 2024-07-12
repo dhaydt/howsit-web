@@ -24,7 +24,7 @@ class APIcontroller extends Controller
 
             return response()->json(['status' => 'true', 'success' => $success], $this->successStatus);
         } else {
-            return response()->json(['status' => 'false'], 401);
+            return response()->json(['status' => 'false', 'message' => 'Email atau password salah'], 401);
         }
     }
 
